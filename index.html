@@ -1,0 +1,36 @@
+
+<html>
+
+<head> </head>
+
+<body>
+  <script>
+    
+    window.addEventListener('message', function(e) {
+      console.log(e);
+      updateCodeWindow(e.data);
+    } , false);
+
+    function getContext() {
+      opener.postMessage("getContext", "*");
+    }
+
+    function updateCodeWindow(data) {
+      const el = document.getElementById("data-window");
+      el.textContent = JSON.stringify(data);
+    }
+    
+  </script>
+
+  <div>
+    <p>Click the button below to request data from console.</p>
+    <button onClick="getContext()">opener.postMessage("getContext", "*");</button><br>
+    <p>Data</p>
+    <pre>
+        <code id="data-window">
+        </code>
+      </pre>
+  </div>
+</body>
+
+</html>
